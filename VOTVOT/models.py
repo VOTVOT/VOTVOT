@@ -21,3 +21,6 @@ class Answer(models.Model):
 class Vote(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='owner', related_name='votes')
     answer = models.ForeignKey(Answer, on_delete=models.CASCADE, verbose_name='answer', related_name='vote')
+
+    def __str__(self):
+        return  self.answer.question.text + ' - ' + self.answer.text + ' - ' + self.owner.email
