@@ -1,3 +1,12 @@
+from django.conf import settings
 from django.db import models
 
-# Create your models here.
+
+class Question(models.Model):
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='owner', related_name='questions')
+    text = models.TextField(verbose_name='text')
+
+
+class Answer(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, verbose_name='question', related_name='answers')
+    text = models.TextField(verbose_name='text')
