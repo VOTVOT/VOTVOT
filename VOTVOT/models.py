@@ -10,8 +10,8 @@ class Question(models.Model):
         return self.text
         
 
-class Answer(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE, verbose_name='question', related_name='answers')
+class Option(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, verbose_name='question', related_name='options')
     text = models.TextField(verbose_name='text')
 
     def __str__(self):
@@ -20,7 +20,7 @@ class Answer(models.Model):
 
 class Vote(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='owner', related_name='votes')
-    answer = models.ForeignKey(Answer, on_delete=models.CASCADE, verbose_name='answer', related_name='vote')
+    option = models.ForeignKey(Option, on_delete=models.CASCADE, verbose_name='option', related_name='vote')
 
     def __str__(self):
-        return  self.answer.question.text + ' - ' + self.answer.text + ' - ' + self.owner.email
+        return  self.option.question.text + ' - ' + self.option.text + ' - ' + self.owner.email

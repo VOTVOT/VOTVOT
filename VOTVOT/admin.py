@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from VOTVOT.models import Question, Answer, Vote
+from VOTVOT.models import Question, Option, Vote
 
 admin.site.register([
     Question,
-    Answer,
+    Option,
     Vote,
 ])
 
