@@ -16,3 +16,8 @@ class Answer(models.Model):
 
     def __str__(self):
         return self.question.text + ' - ' + self.text
+
+
+class Vote(models.Model):
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='owner', related_name='votes')
+    answer = models.ForeignKey(Answer, on_delete=models.CASCADE, verbose_name='answer', related_name='vote')
